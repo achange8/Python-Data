@@ -13,7 +13,7 @@ for res in results:
 cluster_tree = [x for x in range(len(data))]
 clusters = [x for x in range(len(data))]
 
-choice_no = 3
+choice_no = 5
 other_no = 0
 num = no
 n = 0
@@ -30,13 +30,13 @@ for a, b, distance, represent in results:
             d = cluster_tree[int(b)]
         else:
             d = int(b)
-        cluster_tree.append((c, d))
         if a == choice_no or b == choice_no:
             num += n + 1
             if a == choice_no:
                 other_no = int(b)
             else:
                 other_no = int(a)
+        cluster_tree.append((c, d))
         clusters.remove(c)
         clusters.remove(d)
         clusters.append((c, d))
