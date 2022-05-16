@@ -4,6 +4,7 @@ data = [[1, 2], [3, 1], [2, 3], [3, 6], [4, 6], [7, 2], [7, 4]]
 print("Data:")
 for no, d in enumerate(data):
     print("no=", no, "data=", d)
+print(f"no = {no},data = {len(data)}")
 
 results = hclst.linkage(data, method='single', metric='euclidean')
 print("Results:")
@@ -13,7 +14,7 @@ for res in results:
 cluster_tree = [x for x in range(len(data))]
 clusters = [x for x in range(len(data))]
 
-choice_no = 1
+choice_no = 9
 parent_no = 0
 num = no
 n = 0
@@ -34,10 +35,9 @@ for a, b, distance, represent in results:
             num += n + 1
 
         if a == num or b == num:
-            if a > b:
-                parent_no = int(a) + 1
-            else:
-                parent_no = int(b) + 1
+            parent_no = no + n + 1
+        else:
+            parent_no = num
         cluster_tree.append((c, d))
         clusters.remove(c)
         clusters.remove(d)
