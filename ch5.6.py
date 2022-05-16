@@ -14,7 +14,7 @@ for res in results:
 cluster_tree = [x for x in range(len(data))]
 clusters = [x for x in range(len(data))]
 
-choice_no = 9
+choice_no = 1
 parent_no = 0
 num = no
 n = 0
@@ -32,12 +32,10 @@ for a, b, distance, represent in results:
         else:
             d = int(b)
         if a == choice_no or b == choice_no:
-            num += n + 1
+            num = no + n + 1
 
         if a == num or b == num:
             parent_no = no + n + 1
-        else:
-            parent_no = num
         cluster_tree.append((c, d))
         clusters.remove(c)
         clusters.remove(d)
@@ -45,6 +43,8 @@ for a, b, distance, represent in results:
         print(">>>> n=", n,  "number of clusters=",
               len(clusters), "clusters=", clusters)
         n += 1
+if num == n + no:
+    parent_no = num
 print(f"与えられたデータ={choice_no}番")
 print(f"そのクラスタの番号＝{num}")
 print(f"その上位のクラスタの番号＝{parent_no}番")
