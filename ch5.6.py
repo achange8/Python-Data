@@ -1,4 +1,3 @@
-from secrets import choice
 import scipy.cluster.hierarchy as hclst
 
 data = [[1, 2], [3, 1], [2, 3], [3, 6], [4, 6], [7, 2], [7, 4]]
