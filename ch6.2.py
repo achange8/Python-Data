@@ -1,8 +1,8 @@
 from turtle import distance
 import numpy as np
 
-data = [[1, 2], [3, 1], [2, 3], [3, 6], [4, 6], [7, 2], [7, 4], [5, 4]]
-K = 3
+data = [[1, 2], [3, 1], [2, 3], [3, 6], [4, 6], [7, 2], [7, 4], [5, 4], [5, 5]]
+K = 4
 pdata = np.array(data)
 N, L = np.shape(pdata)
 cdata = np.empty([K, L])
