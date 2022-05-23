@@ -1,4 +1,3 @@
-from pyexpat import model
 from sklearn import datasets
 from sklearn import model_selection
 from sklearn import naive_bayes
