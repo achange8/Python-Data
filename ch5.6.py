@@ -14,7 +14,7 @@ for res in results:
 cluster_tree = [x for x in range(len(data))]
 clusters = [x for x in range(len(data))]
 
-choice_no = 9
+choice_no = 1
 parent_no = 0
 num = no
 n = 0
