@@ -6,6 +6,7 @@ from sklearn import metrics
 #　データを取得
 size = [0.2, 0.4, 0.6, 0.8]
 for i in size:
+    print("--------------------------------------------------------------")
     print("size = ", i)
     iris = datasets.load_iris()
     data_train, data_test, label_train, label_test = model_selection. train_test_split(
