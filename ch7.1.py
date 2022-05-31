@@ -5,7 +5,7 @@ from sklearn import metrics
 
 
 for i in range(0, 10):
-    print(i)
+    print(i, "回目")
     iris = datasets.load_iris()
     data_train, data_test, label_train, label_test = model_selection.train_test_split(
         iris['data'], iris['target'], test_size=0.25)
