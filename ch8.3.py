@@ -4,15 +4,13 @@ from sklearn import svm
 from sklearn import metrics
 
 
+iris = datasets.load_iris()
+data_train, data_test, label_train, label_test = model_selection. train_test_split(
+    iris['data'], iris['target'], test_size=0.25)
 Clist = [1, 10, 100, 1000]
 for i in range(len(Clist)):
     print("--------------------------------------------------------------")
-
     print("size = ", Clist[i])
-    iris = datasets.load_iris()
-    data_train, data_test, label_train, label_test = model_selection. train_test_split(
-        iris['data'], iris['target'], test_size=0.25)
-
     C = Clist[i]
 
     gamma = 10
