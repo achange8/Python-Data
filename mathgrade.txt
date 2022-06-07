@@ -1,8 +1,8 @@
-山田 45 D
-sato 67 C
-tanaka 38 D
-kimura 87 A
-suzuki 56 D
-murata 78 B
-yamasita 91 S
-kojima 45 D
+山田 45 D 
+sato 67 C 
+tanaka 38 D 
+kimura 87 A 
+suzuki 56 D 
+murata 78 B 
+yamasita 91 S 
+kojima 45 D 
