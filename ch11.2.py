@@ -1,10 +1,14 @@
+import string
 import MeCab
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 docs = []
 texts = []
 txt = ""
+docno = []
+
 for i in range(0, 10):
     tagger = MeCab.Tagger()
     f = open(f"./newsfile/newsfile{i+1}.txt", 'r', encoding='utf-8')
@@ -18,6 +22,7 @@ for i in range(0, 10):
             txt = txt + " " + node.surface
         node = node.next
     docs.append(txt)
+    docno.append(f"文書{i}")
     print(f"txtfile num : {i+1} parse done")
     txt = ""
 
@@ -28,18 +33,16 @@ for doc in docs:
 npdocs = np.array(docs)
 vectorizer = TfidfVectorizer(norm=None, smooth_idf=False)
 vecs = vectorizer.fit_transform(npdocs)
-tfidfs = vecs.toarray()
 
-terms = vectorizer.get_feature_names()
-print("単語文書行列(TF-IDF)=")
-print("単語\t", end='')
-for term in terms:
-    print("%6s" % term, end='')
+tfidfs = vecs.toarray()
+similarity = cosine_similarity(tfidfs)
+
+print("文書No", end='')
+for n in docno:
+    print("%6s  " % n, end='')
 print()
-
-tfidfs = vecs.toarray()
-for n, tfidf in enumerate(tfidfs):
-    print("文書", n, "\t", end='')
-    for t in tfidf:
-        print("%8.4f" % t, end='')
+for n, simi in zip(docno, similarity):
+    print("%s" % n, end='')
+    for s in simi:
+        print("%10.4f" % s, end='')
     print()
