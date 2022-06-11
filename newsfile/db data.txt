@@ -1,0 +1,28 @@
+user id: 23402040
+
+
+// coments
+{
+*num : 'num' // db name same board NUM
+*writer : user.id 'string'
+*id : num  , auto // coment id 
+*content : content "string "
+created_at : 'gorm'
+}
+
+//C_Coments
+{
+*id : id // same content id
+*writer // user.id 
+content : content  "string"  
+created_at : 'gorm'
+}
+
+UI
+
+{
+wroted boards
+wroted coments
+modify id 
+modify password
+ 
