@@ -1,4 +1,3 @@
-from string import digits
 from sklearn import datasets
 from sklearn import model_selection
 from sklearn import naive_bayes
