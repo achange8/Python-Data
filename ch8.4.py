@@ -10,9 +10,8 @@ targetnames = []
 for name in digits['target_names']:
     targetnames.append(str(name))
 
-C = 1000
-gamma = 0.1
-model = svm.SVC(C=C, gamma=gamma)
+C = 100
+model = svm.SVC(C=C, gamma="auto")
 model.fit(data_train, label_train)
 
 label_train_pred = model.predict(data_train)

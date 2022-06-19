@@ -33,8 +33,8 @@ tfidfs = vecs.toarray()
 terms = vectorizer.get_feature_names()
 print("単語文書行列(TF-IDF)=")
 print("単語\t", end='')
-for term in terms:
-    print("%6s" % term, end='')
+for n, term in enumerate(terms):
+    print("%6s" % term, n, end='')
 print()
 
 tfidfs = vecs.toarray()
@@ -43,3 +43,6 @@ for n, tfidf in enumerate(tfidfs):
     for t in tfidf:
         print("%8.4f" % t, end='')
     print()
+    pp = {}
+for i in range(terms):
+    pp[f"{terms[i]}"] = tfidf[i]
