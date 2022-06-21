@@ -1,4 +1,3 @@
-# wikiデータの文書の類似度を計算
 import MeCab
 import re
 import numpy as np
@@ -9,7 +8,7 @@ import datetime
 # 形態素解析器
 tagger = MeCab.Tagger()
 
-# 関数定義：wikiデータを読み込む
+# Read wiki data
 
 
 def read_wikidata(filename):
@@ -20,7 +19,8 @@ def read_wikidata(filename):
     titles = []
     documents = []
     doccnt = 0
-    # ファイル読んでから1行ずつ処理する
+    print("Read file start")
+    # Read the file and process one line at a time
     for line in wikifile:
         if line.startswith('<doc '):
             buf = []
@@ -28,7 +28,6 @@ def read_wikidata(filename):
             m = re.search('title=.*>', line)
             title = m.group().replace('title="', '')
             title = title.replace('">', '').strip()
-            print("文書番号=", doccnt, "タイトル=", title)
 
         elif line.startswith('</doc>'):
             doc = ''.join(buf)
@@ -42,7 +41,6 @@ def read_wikidata(filename):
         if docdone == True:
             node = tagger.parseToNode(doc)
             while node:
-                # 形態素属性を分割してリストに入れる
                 node_features = node.feature.split(",")
                 if node_features[0] == "名詞" and (node_features[1] == "一般" or node_features[1] == "固有名詞"):
                     words = words+" "+node.surface
@@ -51,10 +49,8 @@ def read_wikidata(filename):
         if len(words) >= 100:
             titles.append(title)
             documents.append(words)
-
+    print("Read file done")
     return(titles, documents)
-
-# 関数定義：TF-IDFを計算
 
 
 def calculate_tfidf(titles, docs):
@@ -71,35 +67,34 @@ def calculate_tfidf(titles, docs):
 
     return tfidfs
 
-# コサイン類似度
+# cos 類似度
 
 
 def calculate_similarity(titles, tfidfs):
     similarity = cosine_similarity(tfidfs)
-    # 計算結果を表示
     for n1, simi in enumerate(similarity):
         print("-------文書1 = %d   タイトル = %s ----------" % (n1, titles[n1]))
+        pp = {}
         for n2, s in enumerate(simi):
             if(n1 != n2 and s >= 0.2):
-                print("文書1=%s 文書2=%s 類似度=%8.6f" % (titles[n1], titles[n2], s))
+                pp[f"{titles[n2]}"] = s
+        for key, value in sorted(pp.items(), key=lambda x: x[1], reverse=True)[0:3]:
+            print("文書1=%s 文書2=%s 類似度=%8.6f" % (titles[n1], key, value))
     return
-
-# メイン処理
 
 
 def main():
-    # ファイル名を指定
     wikifilename = "./wikidata/wikiarticles/AA/wiki_00"
     wikititles, wikidocuments = read_wikidata(wikifilename)
     wikitfidfs = calculate_tfidf(wikititles, wikidocuments)
     calculate_similarity(wikititles, wikitfidfs)
 
 
-# ここから実行する
+# start
 if __name__ == "__main__":
     start_time = datetime.datetime.now()
     main()
     end_time = datetime.datetime.now()
     elapsed_time = end_time-start_time
     print("経過時間=", elapsed_time)
-    print("すべて完了 !!!")
+    print("---完了---")
