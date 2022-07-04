@@ -1,7 +1,13 @@
 from secrets import choice
 import scipy.cluster.hierarchy as hclst
 
-data = [[1, 2], [3, 1], [2, 3], [3, 6], [4, 6], [7, 2], [7, 4]]
+data = [
+    [0, 1],
+    [1, 0],
+    [2, 3],
+    [5, 3],
+    [5, 5],
+]
 num = len(data)
 print("Data:")
 for no, d in enumerate(data):
@@ -16,7 +22,7 @@ for res in results:
 cluster_tree = [x for x in range(len(data))]
 clusters = [x for x in range(len(data))]
 n = 0
-distance_max = 2.5
+distance_max = 10
 print("Clusters:")
 for a, b, distance, represent in results:
     if distance <= distance_max:

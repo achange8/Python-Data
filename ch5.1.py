@@ -1,7 +1,7 @@
 import scipy.cluster.hierarchy as hclst
 from matplotlib import pyplot as plt
 
-data = [[1, 2], [3, 1], [2, 3], [3, 6], [4, 6], [7, 2], [7, 4], [5, 4]]
+data = [[0, 1], [1, 0], [2, 3], [5, 3], [5, 5]]
 
 for no, d in enumerate(data):
     print("No = ", no, ", data = ", d)
