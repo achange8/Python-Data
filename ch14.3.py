@@ -89,7 +89,7 @@ def print_result(result):
 def main(i):
     des0, des1, des2, des3 = extract_features()
     # return err when kk = 10;
-    # input kk=100 ~ 20
+    # input kk=100 ~ 10
     kk = 100-(i*10)
     docs = create_docs(des0, des1, des2, des3, kk)
     similarity = calculate_similarity(docs)
@@ -98,7 +98,7 @@ def main(i):
 
 # start
 if __name__ == "__main__":
-    for i in range(0, 9):
+    for i in range(0, 10):
         start_time = datetime.datetime.now()
         main(i)
         end_time = datetime.datetime.now()
