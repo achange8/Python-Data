@@ -1,35 +1,16 @@
-# 文書間の類似度
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from numpy import dot
+from numpy.linalg import norm
 
-#　文書集合
-docs = [
-    '温暖化 温暖化 地球 日本 地球 地球',
-    '天気 日本 水温 太平洋 日本 水温',
-    '太平洋 水温 日本 温暖化 水温',
-]
-print("文書集合=")
-for doc in docs:
-    print(doc)
 
-# オブジェクト生成
-npdocs = np.array(docs)
-vectorizer = TfidfVectorizer(norm=None, smooth_idf=False)
-vecs = vectorizer.fit_transform(npdocs)
-# TF-IDF
-tfidfs = vecs.toarray()
-# コサイン類似度
-similarity = cosine_similarity(tfidfs)
+def cos_sim(A, B):
+    return dot(A, B)/(norm(A)*norm(B))
 
-# 計算結果を表示
-docno = ["文書0", "文書1", "文書2"]
-print("文書No", end='')
-for n in docno:
-    print("%6s  " % n, end='')
-print()
-for n, simi in zip(docno, similarity):
-    print("%s" % n, end='')
-    for s in simi:
-        print("%10.4f" % s, end='')
-    print()
+
+doc1 = np.array([2, 3, 1, 0, 0, 0])
+doc2 = np.array([0, 0, 2, 1, 2, 1])
+doc3 = np.array([1, 0, 1, 0, 3, 1])
+
+print('문서 1과 문서2의 유사도 :', cos_sim(doc1, doc2))
+print('문서 1과 문서3의 유사도 :', cos_sim(doc1, doc3))
+print('문서 2와 문서3의 유사도 :', cos_sim(doc2, doc3))
